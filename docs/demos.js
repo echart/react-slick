@@ -1,7 +1,6 @@
 "use strict";
 
 import React from "react";
-import Slider from "../src/slider";
 
 import SimpleSlider from "../examples/SimpleSlider";
 import SlideChangeHooks from "../examples/SlideChangeHooks";
@@ -14,6 +13,7 @@ import UnevenSetsFinite from "../examples/UnevenSetsFinite";
 import CenterMode from "../examples/CenterMode";
 import FocusOnSelect from "../examples/FocusOnSelect";
 import AutoPlay from "../examples/AutoPlay";
+import AutoPlayFinite from "../examples/AutoPlayFinite";
 import AutoPlayMethods from "../examples/AutoPlayMethods";
 import PauseOnHover from "../examples/PauseOnHover";
 import Rtl from "../examples/Rtl";
@@ -47,6 +47,7 @@ export default class App extends React.Component {
         <CenterMode />
         <FocusOnSelect />
         <AutoPlay />
+        <AutoPlayFinite />
         <AutoPlayMethods />
         <PauseOnHover />
         <Rtl />

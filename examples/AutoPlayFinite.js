@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import Slider from "../src/slider";
 
-export default class AutoPlay extends Component {
+export default class AutoPlayFinite extends Component {
   render() {
     const settings = {
       dots: true,
-      infinite: true,
-      slidesToShow: 3,
+      infinite: false,
+      slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 300,
+      speed: 2000,
       autoplaySpeed: 2000,
       cssEase: "linear"
     };
     return (
       <div>
-        <h2>Auto Play</h2>
+        <h2>Auto Play Finite</h2>
         <Slider {...settings}>
           <div>
             <h3>1</h3>

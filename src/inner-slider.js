@@ -35,7 +35,8 @@ export class InnerSlider extends React.Component {
     this.state = {
       ...initialState,
       currentSlide: this.props.initialSlide,
-      slideCount: React.Children.count(this.props.children)
+      slideCount: React.Children.count(this.props.children),
+      autoplayDirection: 0
     };
     this.callbackTimers = [];
     this.clickable = true;
@@ -535,13 +536,16 @@ export class InnerSlider extends React.Component {
   };
   play = () => {
     var nextIndex;
-    if (this.props.rtl) {
+    if (this.props.rtl || this.state.autoplayDirection === 1) {
       nextIndex = this.state.currentSlide - this.props.slidesToScroll;
+
+      if (nextIndex <= 0) this.setState({ autoplayDirection: 0 });
     } else {
       if (canGoNext({ ...this.props, ...this.state })) {
         nextIndex = this.state.currentSlide + this.props.slidesToScroll;
       } else {
-        return false;
+        nextIndex = this.state.currentSlide - this.props.slidesToScroll;
+        this.setState({ autoplayDirection: 1 });
       }
     }
 
