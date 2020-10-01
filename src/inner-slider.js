@@ -398,6 +398,7 @@ export class InnerSlider extends React.Component {
     onLazyLoad && slidesToLoad.length > 0 && onLazyLoad(slidesToLoad);
     if (!this.props.waitForAnimate && this.animationEndCallback) {
       clearTimeout(this.animationEndCallback);
+      this.props.autoplay && this.autoPlay("update");
       afterChange && afterChange(currentSlide);
       delete this.animationEndCallback;
     }
@@ -536,13 +537,15 @@ export class InnerSlider extends React.Component {
   };
   play = () => {
     var nextIndex;
-    if (this.props.rtl || this.state.autoplayDirection === 1) {
+    if (
+      this.props.rtl ||
+      (this.state.autoplayDirection === 1 && this.state.currentSlide > 0)
+    ) {
       nextIndex = this.state.currentSlide - this.props.slidesToScroll;
-
-      if (nextIndex <= 0) this.setState({ autoplayDirection: 0 });
     } else {
       if (canGoNext({ ...this.props, ...this.state })) {
         nextIndex = this.state.currentSlide + this.props.slidesToScroll;
+        this.setState({ autoplayDirection: 0 });
       } else {
         nextIndex = this.state.currentSlide - this.props.slidesToScroll;
         this.setState({ autoplayDirection: 1 });
